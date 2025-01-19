@@ -1,0 +1,27 @@
+version: "3.4"
+
+services:
+  realmd:
+    build:
+      context: ./
+      target: realmd
+    ports:
+      - "3724:3724"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  mangosd:
+    build:
+      context: ./
+      target: mangosd
+    ports:
+      - "8085:8085"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    build:
+      context: ./
+      target: db
