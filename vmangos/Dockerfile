@@ -24,12 +24,16 @@ FROM server-base as realmd
 COPY --from=build /vmangos/bin/realmd /vmangos/realmd
 COPY --from=build /vmangos/etc/realmd.conf.dist /vmangos/etc/realmd.conf
 
+EXPOSE 3724
+
 CMD ["./realmd"]
 
 FROM server-base as mangosd
 
 COPY --from=build /vmangos/bin/mangosd /vmangos/mangosd
 COPY --from=build /vmangos/etc/mangosd.conf.dist /vmangos/etc/mangosd.conf
+
+EXPOSE 8085
 
 CMD ["./mangosd"]
 
